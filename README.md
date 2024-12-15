@@ -7,7 +7,11 @@ To get similar jobs we are making use of cosine similarity and BERT. The code yo
 Here is a short brief of the different files present in the github repo:
 
 DataAndModelInitializer.py - To initialize the BERT model. To get the necessary dataframes from the professors dataset.
+
 LinkedInProfileFetcher.py - To fetch the users LinkedIn profile details.
+
 VisualizationTools.py - To create different kinds of plots.
+
 EmbeddingProcessor.py - To get occupations/education present in the BLS data that are similar to the user's qualification
+
 app.py  - The main file which calls the different functions present in these classes and the uses the plotly dash method to display the graphs in a webpage.
