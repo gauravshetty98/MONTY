@@ -38,6 +38,24 @@ class DataAndModelInitializer:
 
         chg_proj_2019 = pd.read_excel('project_data/2019-29/occupation.xlsx', sheet_name=8, skiprows=1)
         chg_proj_2023 = pd.read_excel('project_data/2023-33/occupation.xlsx', sheet_name=10, skiprows=1)
+
+        occ_ed_req_19 = pd.read_excel('project_data/extra/education_2019.xlsx', sheet_name = 6, skiprows = 4)
+        occ_ed_req_23 = pd.read_excel('project_data/extra/education_2023.xlsx', sheet_name = 6, skiprows = 4)
+
+        education_mapping = {
+                            'No formal educational credential': 1,
+                            'Some college, no degree': 1,
+                            'Postsecondary nondegree award': 3,
+                            'High school diploma or equivalent': 2,
+                            "Associate's degree": 4,
+                            "Bachelor's degree": 5,
+                            "Master's degree": 6,
+                            'Doctoral or professional degree': 7
+                                }
+
+        # Replace the column values
+        occ_ed_req_23['Education Level Numeric'] = occ_ed_req_23['Typical entry-level educational requirement'].map(education_mapping)
+        occ_ed_req_19['Education Level Numeric'] = occ_ed_req_19['Typical entry-level educational requirement'].map(education_mapping)
         
         # Store dataframes as a dictionary in the instance variable
         self.dataframes = {
@@ -46,7 +64,9 @@ class DataAndModelInitializer:
             'ind_data_2033': ind_data_2033,
             'educ_data_2023': educ_data_2023,
             'chg_proj_2019': chg_proj_2019,
-            'chg_proj_2023': chg_proj_2023
+            'chg_proj_2023': chg_proj_2023,
+            'occ_ed_req_19': occ_ed_req_19,
+            'occ_ed_req_23': occ_ed_req_23
         }
         return self.dataframes
     
@@ -58,6 +78,6 @@ class DataAndModelInitializer:
             tuple: A tuple containing the initialized tokenizer and model.
         """
         # Load tokenizer and model
-        self.tokenizer = AutoTokenizer.from_pretrained("jjzha/jobbert-base-cased")
-        self.model = AutoModel.from_pretrained("jjzha/jobbert-base-cased")
+        self.tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        self.model = AutoModel.from_pretrained("bert-base-uncased")
         return self.tokenizer, self.model

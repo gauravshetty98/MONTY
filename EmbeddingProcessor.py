@@ -89,7 +89,7 @@ class EmbeddingProcessor:
         
         return sorted(similarities, key=lambda x: x[1], reverse=True)[:10]
 
-    def save_embeddings(self, embeddings, filename="embeddings.npy"):
+    def save_embeddings(self, embeddings, filename="embeddings_bert.npy"):
         """
         Save computed embeddings to a file.
 
@@ -99,7 +99,7 @@ class EmbeddingProcessor:
         """
         np.save(filename, embeddings)
 
-    def load_embeddings(self, string_list, batch_size=64, filename="embeddings.npy"):
+    def load_embeddings(self, string_list, batch_size=64, filename="embeddings_bert.npy"):
         """
         Load embeddings from a file, or compute and save them if they don't exist.
 
